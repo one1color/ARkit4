@@ -1,10 +1,40 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@one1color
+jkent63636
+/
+ModelPickerARApp
+1
+0
+0
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+ModelPickerARApp/ModelPickerApp/ContentView.swift
+@jkent63636
+jkent63636 get files to github
+Latest commit aa72aa2 on 20 Oct
+ History
+ 1 contributor
+208 lines (164 sloc)  6.17 KB
+  
 //
 //  ContentView.swift
-//  TestPickerApp
+//  ModelPickerApp
 //
-//  Created by koki isshiki on 07.12.20.
+//  Created by Joshua Kent on 9/26/20.
 //
-
 import SwiftUI
 import RealityKit
 import ARKit
@@ -15,18 +45,19 @@ struct ContentView : View {
     @State private var selectedModel: Model?
     @State private var modelConfirmedForPlacement: Model?
     
+    //Dynamically get our model filenmaes
     private var models: [Model] = {
-       //Dynamically get our model filenames
+        
         let filemanager = FileManager.default
         
-        guard let path = Bundle.main.resourcePath, let files = try? filemanager.contentsOfDirectory(atPath: path) else{
+        guard let path = Bundle.main.resourcePath, let files =  try? filemanager.contentsOfDirectory(atPath: path) else {
             return []
         }
         
         var availableModels: [Model] = []
-        for filename in files where filename.hasSuffix("usdz"){
+        
+        for filename in files where filename.hasSuffix("usdz") {
             let modelName = filename.replacingOccurrences(of: ".usdz", with: "")
-            
             let model = Model(modelName: modelName)
             availableModels.append(model)
         }
@@ -34,17 +65,17 @@ struct ContentView : View {
         return availableModels
     }()
     
+    //Where we actually load stuff into the view
     var body: some View {
-        ZStack(alignment: .bottom) {
-            
+        ZStack(alignment: .bottom, content: {
             ARViewContainer(modelConfirmedForPlacement: self.$modelConfirmedForPlacement)
             
             if self.isPlacementEnabled {
-                PlacementButtonsView(isPlacementEnabled: self.$isPlacementEnabled, selectedModel: self.$selectedModel, modelConfirmedForPlacement: self.$modelConfirmedForPlacement)
+                PlacementButtonView(isPlacementEnabled: self.$isPlacementEnabled, selectedModel: self.$selectedModel, modelConfirmedForPlacement: self.$modelConfirmedForPlacement)
             } else {
                 ModelPickerView(isPlacementEnabled: self.$isPlacementEnabled, selectedModel: self.$selectedModel, models: self.models)
             }
-        }
+        })
     }
 }
 
@@ -55,9 +86,7 @@ struct ARViewContainer: UIViewRepresentable {
         
         let arView = CustomARView(frame: .zero)
         
-                
         return arView
-        
     }
     
     func updateUIView(_ uiView: ARView, context: Context) {
@@ -67,20 +96,12 @@ struct ARViewContainer: UIViewRepresentable {
                 print("DEBUG: adding model to scene - \(model.modelName)")
                 
                 let anchorEntity = AnchorEntity(plane: .any)
-                anchorEntity.addChild(modelEntity)
-                //anchorEntity.addChild(modelEntity.clone(recursive: true))
+                anchorEntity.addChild(modelEntity.clone(recursive: true))
+                
                 uiView.scene.addAnchor(anchorEntity)
             } else {
-                print("DEBUG: unable to load model Entity for - \(model.modelName)")
+                print("DEBUG: Unable to load modelEntity for - \(model.modelName)")
             }
-            
-//            let fileName = modelName + ".usdz"
-//            let modelEntity = try! ModelEntity.loadModel(named: fileName)
-//
-//            let anchorEntity = AnchorEntity(plane: .any)
-//            anchorEntity.addChild(modelEntity)
-//
-//            uiView.scene.addAnchor(anchorEntity)
             
             DispatchQueue.main.async {
                 self.modelConfirmedForPlacement = nil
@@ -99,55 +120,52 @@ class CustomARView: ARView {
         focusSquare.delegate = self
         focusSquare.setAutoUpdate(to: true)
         
-        setupARView()
-        
+        self.setupARView()
     }
     
     @objc required dynamic init?(coder decoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-}
-
-extension CustomARView: FEDelegate {
-    func toTrackingState(){
-        print("tracking")
-    }
     
-    func toInitializingState(){
-        print("initializing")
-    }
-    
-    func setupARView(){
+    func setupARView() {
         let config = ARWorldTrackingConfiguration()
         config.planeDetection = [.horizontal, .vertical]
         config.environmentTexturing = .automatic
-        
-        //if LiDAR senser
+
         if ARWorldTrackingConfiguration.supportsSceneReconstruction(.mesh) {
             config.sceneReconstruction = .mesh
         }
-        
-        self.session.run(config)
 
+        self.session.run(config)
+    }
+}
+
+extension CustomARView: FEDelegate {
+    func toTrackingState() {
+        print("Tracking")
+    }
+    
+    func toInitializingState() {
+        print("Initializing")
     }
 }
 
 struct ModelPickerView: View {
     @Binding var isPlacementEnabled: Bool
     @Binding var selectedModel: Model?
-
+    
     var models: [Model]
     
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false){
-            HStack(spacing: 30){
-                ForEach(0 ..< self.models.count){ index in
+        ScrollView(.horizontal, showsIndicators: false, content: {
+            HStack(spacing: 30, content: {
+                ForEach(0 ..< self.models.count) { index in
                     Button(action: {
                         print("DEBUG: selected model with name: \(self.models[index].modelName)")
-                        self.isPlacementEnabled = true
                         
                         self.selectedModel = self.models[index]
                         
+                        self.isPlacementEnabled = true
                     }) {
                         Image(uiImage: self.models[index].image)
                             .resizable()
@@ -157,42 +175,44 @@ struct ModelPickerView: View {
                             .cornerRadius(12)
                     }.buttonStyle(PlainButtonStyle())
                 }
-            }
-        }
+            })
+        })
         .padding(20)
         .background(Color.black.opacity(0.5))
     }
 }
 
-struct PlacementButtonsView: View{
+struct PlacementButtonView: View {
     @Binding var isPlacementEnabled: Bool
     @Binding var selectedModel: Model?
     @Binding var modelConfirmedForPlacement: Model?
     
-    var body : some View {
+    var body: some View {
         HStack {
-            //cancel button
+            //Cancel Button
             Button(action: {
-                print("DEBUG: Cancel model placement")
+                print("DEBUG: model placement canceled.")
+                
                 self.resetPlacementParameters()
-
             }) {
                 Image(systemName: "xmark")
-                    .frame(width: 60, height:60)
+                    .frame(width: 60, height: 60)
                     .font(.title)
                     .background(Color.white.opacity(0.75))
                     .cornerRadius(30)
                     .padding(20)
             }
-            //confirm button
+            
+            //Confirmation Button
             Button(action: {
-                print("DEBUG: Confirm model placement")
+                print("DEBUG: model placement confirmed.")
+                
                 self.modelConfirmedForPlacement = self.selectedModel
+                
                 self.resetPlacementParameters()
-
             }) {
                 Image(systemName: "checkmark")
-                    .frame(width: 60, height:60)
+                    .frame(width: 60, height: 60)
                     .font(.title)
                     .background(Color.white.opacity(0.75))
                     .cornerRadius(30)
@@ -200,11 +220,14 @@ struct PlacementButtonsView: View{
             }
         }
     }
+    
     func resetPlacementParameters() {
         self.isPlacementEnabled = false
-        self.selectedModel = nil
+        self.selectedModel =  nil
     }
+    
 }
+
 
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
@@ -213,3 +236,15 @@ struct ContentView_Previews : PreviewProvider {
     }
 }
 #endif
+© 2020 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About

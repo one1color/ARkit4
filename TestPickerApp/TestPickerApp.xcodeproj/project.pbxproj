@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,8 @@
 		E7CBA7AF257E4BE20080F97D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7CBA7AE257E4BE20080F97D /* Assets.xcassets */; };
 		E7CBA7B2257E4BE20080F97D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7CBA7B1257E4BE20080F97D /* Preview Assets.xcassets */; };
 		E7CBA7B5257E4BE20080F97D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7CBA7B3257E4BE20080F97D /* LaunchScreen.storyboard */; };
+		E7DF4B3A257FDE1D00E46A55 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DF4B39257FDE1D00E46A55 /* Model.swift */; };
+		E7DF4B46257FF02100E46A55 /* FocusEntity in Frameworks */ = {isa = PBXBuildFile; productRef = E7DF4B45257FF02100E46A55 /* FocusEntity */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,7 @@
 		E7CBA7B1257E4BE20080F97D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E7CBA7B4257E4BE20080F97D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E7CBA7B6257E4BE20080F97D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7DF4B39257FDE1D00E46A55 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7DF4B46257FF02100E46A55 /* FocusEntity in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +74,7 @@
 				E791D807257F9DC300C7A022 /* Model */,
 				E7CBA7A8257E4BDF0080F97D /* AppDelegate.swift */,
 				E7CBA7AA257E4BDF0080F97D /* ContentView.swift */,
+				E7DF4B39257FDE1D00E46A55 /* Model.swift */,
 				E7CBA7AE257E4BE20080F97D /* Assets.xcassets */,
 				E7CBA7B3257E4BE20080F97D /* LaunchScreen.storyboard */,
 				E7CBA7B6257E4BE20080F97D /* Info.plist */,
@@ -102,6 +107,9 @@
 			dependencies = (
 			);
 			name = TestPickerApp;
+			packageProductDependencies = (
+				E7DF4B45257FF02100E46A55 /* FocusEntity */,
+			);
 			productName = TestPickerApp;
 			productReference = E7CBA7A5257E4BDF0080F97D /* TestPickerApp.app */;
 			productType = "com.apple.product-type.application";
@@ -129,6 +137,9 @@
 				Base,
 			);
 			mainGroup = E7CBA79C257E4BDF0080F97D;
+			packageReferences = (
+				E7DF4B44257FF02100E46A55 /* XCRemoteSwiftPackageReference "FocusEntity" */,
+			);
 			productRefGroup = E7CBA7A6257E4BDF0080F97D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -158,6 +169,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7DF4B3A257FDE1D00E46A55 /* Model.swift in Sources */,
 				E7CBA7AB257E4BDF0080F97D /* ContentView.swift in Sources */,
 				E7CBA7A9257E4BDF0080F97D /* AppDelegate.swift in Sources */,
 			);
@@ -357,6 +369,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E7DF4B44257FF02100E46A55 /* XCRemoteSwiftPackageReference "FocusEntity" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maxxfrazer/FocusEntity";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E7DF4B45257FF02100E46A55 /* FocusEntity */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E7DF4B44257FF02100E46A55 /* XCRemoteSwiftPackageReference "FocusEntity" */;
+			productName = FocusEntity;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E7CBA79D257E4BDF0080F97D /* Project object */;
 }
