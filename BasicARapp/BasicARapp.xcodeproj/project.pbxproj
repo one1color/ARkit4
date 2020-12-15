@@ -13,6 +13,7 @@
 		E73C028025877850007A2E9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E73C027E25877850007A2E9F /* Main.storyboard */; };
 		E73C028225877851007A2E9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E73C028125877851007A2E9F /* Assets.xcassets */; };
 		E73C028525877851007A2E9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E73C028325877851007A2E9F /* LaunchScreen.storyboard */; };
+		E73C028E25879C30007A2E9F /* teapot.usdz in Resources */ = {isa = PBXBuildFile; fileRef = E73C028D25879C30007A2E9F /* teapot.usdz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E73C028125877851007A2E9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E73C028425877851007A2E9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E73C028625877851007A2E9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E73C028D25879C30007A2E9F /* teapot.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = teapot.usdz; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				E73C027825877850007A2E9F /* AppDelegate.swift */,
 				E73C027A25877850007A2E9F /* ViewController.swift */,
+				E73C028D25879C30007A2E9F /* teapot.usdz */,
 				E73C027C25877850007A2E9F /* Experience.rcproject */,
 				E73C027E25877850007A2E9F /* Main.storyboard */,
 				E73C028125877851007A2E9F /* Assets.xcassets */,
@@ -124,6 +127,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E73C028E25879C30007A2E9F /* teapot.usdz in Resources */,
 				E73C028525877851007A2E9F /* LaunchScreen.storyboard in Resources */,
 				E73C028225877851007A2E9F /* Assets.xcassets in Resources */,
 				E73C028025877850007A2E9F /* Main.storyboard in Resources */,
