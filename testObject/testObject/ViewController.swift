@@ -16,10 +16,10 @@ class ViewController: UIViewController {
         
         super.viewDidLoad()
         
-        let model = try! ModelEntity.load(named: "Untitled")
+        let model = try! ModelEntity.loadModel(named: "Untitled")
         
         model.generateCollisionShapes(recursive: true)
-        arView.installGestures([.translation, .rotation], for: model!)
+        arView.installGestures([.translation, .rotation, .scale], for: model)
         
         let anchor: AnchorEntity = AnchorEntity(plane: .horizontal, classification: .any)
         arView.scene.addAnchor(anchor)
