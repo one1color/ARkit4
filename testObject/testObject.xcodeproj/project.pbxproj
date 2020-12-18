@@ -14,6 +14,8 @@
 		E740CEF82588D23F0026F04C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E740CEF72588D23F0026F04C /* Assets.xcassets */; };
 		E740CEFB2588D23F0026F04C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E740CEF92588D23F0026F04C /* LaunchScreen.storyboard */; };
 		E78CC99A25890ACE00477AB7 /* Untitled.usdz in Resources */ = {isa = PBXBuildFile; fileRef = E78CC99925890ACE00477AB7 /* Untitled.usdz */; };
+		E7C56B14258BBD8D008E7597 /* sofa.usdz in Resources */ = {isa = PBXBuildFile; fileRef = E7C56B13258BBD8D008E7597 /* sofa.usdz */; };
+		E7C56B1F258BD2C8008E7597 /* leather_sofa.usdz in Resources */ = {isa = PBXBuildFile; fileRef = E7C56B1E258BD2C8008E7597 /* leather_sofa.usdz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		E740CEFA2588D23F0026F04C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E740CEFC2588D23F0026F04C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E78CC99925890ACE00477AB7 /* Untitled.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Untitled.usdz; sourceTree = "<group>"; };
+		E7C56B13258BBD8D008E7597 /* sofa.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = sofa.usdz; sourceTree = "<group>"; };
+		E7C56B1E258BD2C8008E7597 /* leather_sofa.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = leather_sofa.usdz; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,8 @@
 		E740CF032588D2720026F04C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E7C56B1E258BD2C8008E7597 /* leather_sofa.usdz */,
+				E7C56B13258BBD8D008E7597 /* sofa.usdz */,
 				E78CC99925890ACE00477AB7 /* Untitled.usdz */,
 			);
 			path = Model;
@@ -137,8 +143,10 @@
 			files = (
 				E740CEFB2588D23F0026F04C /* LaunchScreen.storyboard in Resources */,
 				E740CEF82588D23F0026F04C /* Assets.xcassets in Resources */,
+				E7C56B1F258BD2C8008E7597 /* leather_sofa.usdz in Resources */,
 				E78CC99A25890ACE00477AB7 /* Untitled.usdz in Resources */,
 				E740CEF62588D23C0026F04C /* Main.storyboard in Resources */,
+				E7C56B14258BBD8D008E7597 /* sofa.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

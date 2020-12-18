@@ -16,14 +16,22 @@ class ViewController: UIViewController {
         
         super.viewDidLoad()
         
-        let model = try! ModelEntity.loadModel(named: "Untitled")
+        let model1 = try! ModelEntity.loadModel(named: "sofa")
+        let model2 = try! ModelEntity.loadModel(named: "leather_sofa")
         
-        model.generateCollisionShapes(recursive: true)
-        arView.installGestures([.translation, .rotation, .scale], for: model)
+        model1.generateCollisionShapes(recursive: true)
+        model2.generateCollisionShapes(recursive: true)
+        arView.installGestures([.translation, .rotation, .scale], for: model2)
+        arView.installGestures([.translation, .rotation, .scale], for: model1)
         
-        let anchor: AnchorEntity = AnchorEntity(plane: .horizontal, classification: .any)
-        arView.scene.addAnchor(anchor)
-        anchor.addChild(model)
+        let anchor1: AnchorEntity = AnchorEntity(plane: .horizontal, classification: .any)
+        let anchor2: AnchorEntity = AnchorEntity(plane: .horizontal, classification: .any)
+        
+        
+        arView.scene.addAnchor(anchor1)
+        arView.scene.addAnchor(anchor2)
+        anchor1.addChild(model1)
+        anchor2.addChild(model2)
         
         
         }
